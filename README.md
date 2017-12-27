@@ -7,6 +7,8 @@ fully matured.
 
 This is an example of SOAP with JPA, plus JSF.  The build tool is Ant.
 
+This application has been known to work with Java 7 and GlassFish 3.1.1.
+
 ### Building
 
 - Install GlassFish or some other JEE container.
@@ -20,6 +22,8 @@ This is an example of SOAP with JPA, plus JSF.  The build tool is Ant.
 ```
 ant webapp
 ```
+
+### Deploying
 
 - Start Apache Derby
 

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<persistence version="1.0"
+    xmlns="http://java.sun.com/xml/ns/persistence"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd">
+
+    <persistence-unit name="jardb_toplink">
+
+        <class>name.subroutine.jardb.db.Archive</class>
+        <class>name.subroutine.jardb.db.Entry</class>
+
+        <properties>
+            <property name="toplink.jdbc.driver"
+                      value="org.apache.derby.jdbc.ClientDriver"/>
+            <property name="toplink.jdbc.url"
+                      value="jdbc:derby://localhost:9999/c:/demo/jardb/db"/>
+            <property name="toplink.jdbc.user"
+                      value="app"/>
+            <property name="toplink.jdbc.password"
+                      value="password"/>
+            <!-- none: do not create/drop tables -->
+            <!-- create-tables: create if missing -->
+            <!-- drop-and-create-tables: drop and create; could be dangerous -->
+            <property name="toplink.ddl-generation"
+                      value="create-tables"/>
+        </properties>
+
+    </persistence-unit>
+
+    <!--
+        toplink has a bug: causes stack overflow after too many large transactions
+
+        we will be using eclipselink instead, which is the next generation of
+        toplink
+    -->
+    <persistence-unit name="jardb_eclipselink">
+
+        <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+
+        <class>name.subroutine.jardb.db.Archive</class>
+        <class>name.subroutine.jardb.db.Entry</class>
+
+        <properties>
+            <property name="javax.persistence.jdbc.driver"
+                      value="org.apache.derby.jdbc.ClientDriver"/>
+            <property name="javax.persistence.jdbc.url"
+                      value="jdbc:derby://localhost:9999/c:/demo/jardb/db;create=true"/>
+            <property name="javax.persistence.jdbc.user"
+                      value="app"/>
+            <property name="javax.persistence.jdbc.password"
+                      value="password"/>
+            <!-- none: do not create/drop tables -->
+            <!-- create-tables: create if missing -->
+            <!-- drop-and-create-tables: drop and create; could be dangerous -->
+            <property name="eclipselink.ddl-generation"
+                      value="create-tables"/>
+            <property name="eclipselink.target-database"
+                      value="Derby"/>
+        </properties>
+
+    </persistence-unit>
+
+</persistence>

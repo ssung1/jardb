@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema version="1.0" targetNamespace="http://subroutine.name/jardb" xmlns:tns="http://subroutine.name/jardb" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="getVersion" type="tns:getVersion"/>
+
+  <xs:element name="getVersionResponse" type="tns:getVersionResponse"/>
+
+  <xs:element name="search" type="tns:search"/>
+
+  <xs:element name="searchResponse" type="tns:searchResponse"/>
+
+  <xs:complexType name="getVersion">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="getVersionResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="search">
+    <xs:sequence>
+      <xs:element name="arg0" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="searchResponse">
+    <xs:sequence>
+      <xs:element name="return" type="tns:entry" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="entry">
+    <xs:sequence>
+      <xs:element name="archive" type="tns:archive" minOccurs="0"/>
+      <xs:element name="name" type="xs:string" minOccurs="0"/>
+      <xs:element name="oid" type="xs:int"/>
+      <xs:element name="package" type="xs:string" minOccurs="0"/>
+      <xs:element name="size" type="xs:long"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="archive">
+    <xs:sequence>
+      <xs:element name="directory" type="xs:string" minOccurs="0"/>
+      <xs:element name="lastModified" type="xs:dateTime" minOccurs="0"/>
+      <xs:element name="name" type="xs:string" minOccurs="0"/>
+      <xs:element name="oid" type="xs:int"/>
+      <xs:element name="size" type="xs:long"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
+

@@ -1,0 +1,83 @@
+<?xml version="1.0"?>
+
+<project name="jar file database" default="class_file" basedir=".">
+
+  <!--
+  
+  defines a path called "classpath", which is going be used as
+  classpath.  wow.
+
+  -->
+  <path id="classpath">
+    <pathelement path="${CLASSPATH}"/>
+    <pathelement path="c:/glassfish3/glassfish/lib/javaee.jar"/>
+    <fileset dir="web/WEB-INF/lib" includes="*"/>
+  </path>
+
+  <!--
+
+  attributes are
+
+  name: name
+
+  depends: csv of prerequisites
+
+  if: build target if this value is set
+
+  unless: build target if the value is not set
+
+  description: description
+
+  -->
+  <target name="class_file">
+
+    <!--
+
+    actually builds all the java files in the directory nice stuff
+
+    -->
+    <mkdir dir="web/WEB-INF/classes"/>
+    <javac srcdir="src" destdir="web/WEB-INF/classes"
+      target="1.7" source="1.7" debug="true">
+      <classpath>
+        <path refid="classpath"/>
+      </classpath>
+    </javac>
+
+    <copy todir="web/WEB-INF/classes/META-INF">
+      <fileset dir="src/META-INF">
+        <include name="*"/>
+      </fileset>
+    </copy>
+  </target>
+
+  <target name="webapp" depends="class_file">
+    <war destfile="webapp.war" basedir="web"/>
+  </target>
+  
+  <!--
+
+  this runs a java class
+
+  -->
+  <target name="run">
+    <java classname="com.subroutine.conaan.Test">
+      <classpath>
+        <path refid="classpath"/>
+        <pathelement path="bin"/>
+      </classpath>
+    </java>
+  </target>
+
+  <!--
+
+  cleans the compiled directory
+
+  -->
+  <target name="clean">
+    <delete includeemptydirs="true">
+      <fileset dir="web/WEB-INF/classes" includes="**/*" />
+      <fileset file="webapp.war" />
+    </delete>
+  </target>
+</project>

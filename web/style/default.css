@@ -1,0 +1,17 @@
+body {
+    font-family: calibri; sans-serif
+    font-size: 12pt;
+}
+
+table.jar {
+    font-family: consolas;
+    font-size: 10pt;
+}
+
+table.jar th {
+    text-align: left;
+}
+
+.footer {
+    font-size: 8pt;
+}
