@@ -55,3 +55,6 @@ cd c:\glassfish3
 bin\asadmin start-domain domain1
 bin\asadmin deploy --name jardb --contextroot jardb {path-to-jardb}\web
 ```
+
+- GlassFish 3.1.1 uses a default port of 8080, so go to
+`http://localhost:8080/jardb` to use the application.
